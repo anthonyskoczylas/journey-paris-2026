@@ -232,6 +232,24 @@ h3.display{
 .collage figure:nth-child(1){grid-column:1 / 3;aspect-ratio:20 / 9}
 .collage figure:nth-child(2),.collage figure:nth-child(3){aspect-ratio:5 / 4}
 
+/* ---- edit mode (?edit) ---- */
+.edit-bar{position:fixed;left:0;right:0;bottom:0;z-index:9999;display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:11px 18px;background:rgba(9,13,24,.94);backdrop-filter:blur(10px);border-top:1px solid rgba(201,162,75,.4);font-family:Inter,system-ui,sans-serif}
+.edit-bar .eb-title{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
+.edit-bar .eb-field{font-size:12px;display:flex;gap:8px;align-items:center;color:var(--muted)}
+.edit-bar input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 11px;border-radius:7px;font-size:13px;min-width:170px}
+.edit-bar .eb-b{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 14px;border-radius:7px;font-size:12.5px;cursor:pointer;font-family:inherit}
+.edit-bar .eb-b:hover{background:rgba(255,255,255,.2)}
+.edit-bar .eb-primary{background:var(--gold);border-color:var(--gold);color:#1a1204;font-weight:600}
+.edit-bar .eb-primary:hover{filter:brightness(1.08)}
+.edit-bar .eb-ghost{opacity:.65}
+.edit-bar .eb-msg{font-size:12px;color:var(--gold-2);margin-left:auto;min-width:60px}
+.editing [contenteditable]{outline:1px dashed transparent;outline-offset:2px;border-radius:3px;transition:outline-color .2s}
+.editing [contenteditable]:hover{outline-color:rgba(201,162,75,.5)}
+.editing [contenteditable]:focus{outline:2px solid var(--gold);outline-offset:3px}
+.php-btn{position:absolute;top:16px;right:16px;z-index:45;background:rgba(9,13,24,.82);border:1px solid rgba(201,162,75,.5);color:var(--gold-2);padding:8px 13px;border-radius:8px;font:600 12px Inter,sans-serif;cursor:pointer;backdrop-filter:blur(6px)}
+.php-btn:hover{background:rgba(201,162,75,.92);color:#1a1204}
+.editing .collage img{outline:1px dashed rgba(201,162,75,.55);outline-offset:-1px}
+
 /* SplitText line masks */
 .sl-mask,.split-line{will-change:transform}
 .brandmark{position:fixed;left:26px;top:24px;z-index:50;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted-2)}
@@ -475,9 +493,9 @@ h3.display{
   <div class="photo"></div>
   <div class="inner stack">
     <div class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 9l9-5 9 5M4 9v9m16-9v9M4 20h16M8 12v4M12 12v4M16 12v4"/></svg>Official Banking Partner</div>
-    <h2 class="display reveal d1">Why [Partner&nbsp;Name]</h2>
+    <h2 class="display reveal d1">Why <span class="pn">[Partner&nbsp;Name]</span></h2>
     <p class="lead reveal d2">The strongest institutions invest in people long before profit.</p>
-    <p class="body reveal d3">As our Official Banking Partner, [Partner Name] would help open doors for a generation of young Costa Ricans — standing behind the values of education, opportunity, and leadership that build stronger communities at home and abroad.</p>
+    <p class="body reveal d3">As our Official Banking Partner, <span class="pn">[Partner Name]</span> would help open doors for a generation of young Costa Ricans — standing behind the values of education, opportunity, and leadership that build stronger communities at home and abroad.</p>
   </div>
 </section>
 
@@ -486,9 +504,9 @@ h3.display{
   <div class="photo"></div>
   <div class="inner stack">
     <div class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 21h20"/></svg>Official Technology Partner</div>
-    <h2 class="display reveal d1">Why [Partner&nbsp;Name]</h2>
+    <h2 class="display reveal d1">Why <span class="pn">[Partner&nbsp;Name]</span></h2>
     <p class="lead reveal d2">The future belongs to those with the tools to shape it.</p>
-    <p class="body reveal d3">As our Official Technology Partner, [Partner Name] would equip our delegation to compete, connect, and innovate on a global stage — placing your brand at the heart of the next generation of Costa Rican talent.</p>
+    <p class="body reveal d3">As our Official Technology Partner, <span class="pn">[Partner Name]</span> would equip our delegation to compete, connect, and innovate on a global stage — placing your brand at the heart of the next generation of Costa Rican talent.</p>
   </div>
 </section>
 
@@ -497,20 +515,20 @@ h3.display{
   <div class="photo"></div>
   <div class="inner stack">
     <div class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 8c0-3 2-5 5-5-.5 3-2 5-5 5zM12 8C9 8 6 6 6 3c3 0 6 2 6 5zM7 8h10l-1 11a2 2 0 01-2 2h-4a2 2 0 01-2-2z"/></svg>Official Nutrition Partner</div>
-    <h2 class="display reveal d1">Why [Partner&nbsp;Name]</h2>
+    <h2 class="display reveal d1">Why <span class="pn">[Partner&nbsp;Name]</span></h2>
     <p class="lead reveal d2">Great performance starts with what fuels it.</p>
-    <p class="body reveal d3">As our Official Nutrition Partner, [Partner Name] would help keep our young leaders healthy, focused, and ready to represent Costa Rica at their best — a partnership rooted in wellbeing and national pride.</p>
+    <p class="body reveal d3">As our Official Nutrition Partner, <span class="pn">[Partner Name]</span> would help keep our young leaders healthy, focused, and ready to represent Costa Rica at their best — a partnership rooted in wellbeing and national pride.</p>
   </div>
 </section>
 
 <!-- 16 WHY LOGISTICS -->
-<section class="slide t-steel" data-name="Why — Logistics" style="--photo:url('https://images.unsplash.com/photo-1603277103691-756354934c2d?w=1920')">
+<section class="slide t-steel" data-name="Why — Logistics" style="--photo:url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=1920')">
   <div class="photo"></div>
   <div class="inner stack">
     <div class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="1.8"/><circle cx="17" cy="17" r="1.8"/></svg>Official Logistics Partner</div>
-    <h2 class="display reveal d1">Why [Partner&nbsp;Name]</h2>
+    <h2 class="display reveal d1">Why <span class="pn">[Partner&nbsp;Name]</span></h2>
     <p class="lead reveal d2">Moving a delegation across the world takes precision.</p>
-    <p class="body reveal d3">As our Official Logistics Partner, [Partner Name] would be the engine that carries our students from Costa Rica to Paris — reliable, seamless, and essential to everything we set out to achieve.</p>
+    <p class="body reveal d3">As our Official Logistics Partner, <span class="pn">[Partner Name]</span> would be the engine that carries our students from Costa Rica to Paris — reliable, seamless, and essential to everything we set out to achieve.</p>
   </div>
 </section>
 
@@ -519,9 +537,9 @@ h3.display{
   <div class="photo"></div>
   <div class="inner stack">
     <div class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>Official Global Partner</div>
-    <h2 class="display reveal d1">Why [Partner&nbsp;Name]</h2>
+    <h2 class="display reveal d1">Why <span class="pn">[Partner&nbsp;Name]</span></h2>
     <p class="lead reveal d2">Some partners don't just support the journey — they shape it.</p>
-    <p class="body reveal d3">As our Official Global Partner, [Partner Name] would stand beside our delegation end to end, fully aligned with our mission to build globally minded leaders and to represent Costa Rica with excellence.</p>
+    <p class="body reveal d3">As our Official Global Partner, <span class="pn">[Partner Name]</span> would stand beside our delegation end to end, fully aligned with our mission to build globally minded leaders and to represent Costa Rica with excellence.</p>
   </div>
 </section>
 
@@ -581,7 +599,23 @@ h3.display{
   var cur=document.getElementById('cur');
   document.getElementById('tot').textContent=String(slides.length).padStart(2,'0');
 
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ===== Personalization + saved-edits layer (runs for EVERY visitor) =====
+  var qs=new URLSearchParams(location.search);
+  var EDIT=qs.has('edit');
+  var SAVE_KEY='jspd_deck_v1';
+  var EDIT_SEL='.pill,.eyebrow,.display,.lead,.kicker,.body,.cover-brand,.cover-sub,.cover-sub2,.cover-tag,.stat .n,.stat .l,.contact span';
+  function editEls(){return [].slice.call(document.querySelectorAll(EDIT_SEL));}
+  function slideByName(n){for(var i=0;i<slides.length;i++){if(slides[i].dataset.name===n)return slides[i];}return null;}
+  function setPartner(name){var v=(name&&String(name).trim())?String(name).trim():'[Partner Name]';[].forEach.call(document.querySelectorAll('.pn'),function(el){el.textContent=v;});}
+  var saved={};try{saved=JSON.parse(localStorage.getItem(SAVE_KEY))||{};}catch(e){}
+  editEls().forEach(function(el,i){el.setAttribute('data-ek',i);});
+  if(saved.texts){editEls().forEach(function(el,i){if(saved.texts[i]!=null)el.innerHTML=saved.texts[i];});}
+  if(saved.photos){Object.keys(saved.photos).forEach(function(n){var s=slideByName(n);if(s)s.style.setProperty('--photo',"url('"+saved.photos[n]+"')");});}
+  if(saved.collage){var _ci=document.querySelectorAll('.collage img');Object.keys(saved.collage).forEach(function(k){if(_ci[k])_ci[k].src=saved.collage[k];});}
+  var _pp=qs.get('partner');
+  if(_pp)setPartner(_pp); else if(saved.partner)setPartner(saved.partner);
+
+  var reduce=EDIT||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasGSAP=window.gsap&&window.ScrollTrigger;
   var lenis=null;
 
@@ -745,6 +779,66 @@ h3.display{
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
   window.addEventListener('load',build);
   setTimeout(build,700);
+
+  // ===================== EDIT MODE (?edit) =====================
+  var photoEdits={}, collageEdits={};
+  function copy(t){try{navigator.clipboard.writeText(t);}catch(e){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(_){}ta.remove();}}
+  function flash(m){var el=document.getElementById('eb-msg');if(el){el.textContent=m;clearTimeout(flash._t);flash._t=setTimeout(function(){el.textContent='';},2600);}}
+  function pickImage(cb){var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=function(){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){cb(r.result);};r.readAsDataURL(f);};inp.click();}
+  function doSave(){
+    var texts={};editEls().forEach(function(el,i){texts[i]=el.innerHTML;});
+    var pin=document.getElementById('eb-partner');
+    saved={partner:pin?pin.value:( saved.partner||''),texts:texts,
+      photos:Object.assign({},saved.photos||{},photoEdits),
+      collage:Object.assign({},saved.collage||{},collageEdits)};
+    try{localStorage.setItem(SAVE_KEY,JSON.stringify(saved));}catch(e){flash('Save failed (storage full)');return;}
+  }
+  function downloadHtml(){
+    doSave();
+    var clone=document.documentElement.cloneNode(true);
+    var bar=clone.querySelector('.edit-bar');if(bar)bar.remove();
+    [].forEach.call(clone.querySelectorAll('.php-btn'),function(b){b.remove();});
+    [].forEach.call(clone.querySelectorAll('[contenteditable]'),function(el){el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');});
+    clone.classList.remove('editing');
+    var blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html'});
+    var pin=document.getElementById('eb-partner');
+    var pn=((pin&&pin.value)||'deck').trim().replace(/[^a-z0-9]+/gi,'-').toLowerCase()||'deck';
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='journey-paris-2026-'+pn+'.html';document.body.appendChild(a);a.click();a.remove();
+    flash('Downloaded — send to Tony to publish');
+  }
+  if(EDIT){
+    document.documentElement.classList.add('editing');
+    editEls().forEach(function(el){el.setAttribute('contenteditable','true');el.spellcheck=false;});
+    slides.forEach(function(s){
+      if(!/--photo/.test(s.getAttribute('style')||''))return;
+      var btn=document.createElement('button');btn.type='button';btn.className='php-btn';btn.textContent='⤢ Change photo';
+      btn.addEventListener('click',function(){pickImage(function(d){s.style.setProperty('--photo',"url('"+d+"')");photoEdits[s.dataset.name]=d;});});
+      s.appendChild(btn);
+    });
+    [].forEach.call(document.querySelectorAll('.collage img'),function(img,idx){
+      img.style.cursor='pointer';img.title='Click to replace';
+      img.addEventListener('click',function(){pickImage(function(d){img.src=d;collageEdits[idx]=d;});});
+    });
+    var bar=document.createElement('div');bar.className='edit-bar';
+    bar.innerHTML='<span class="eb-title">Edit mode</span>'
+      +'<label class="eb-field">Sponsor name <input id="eb-partner" type="text" placeholder="e.g. Air France"></label>'
+      +'<button id="eb-link" class="eb-b eb-primary">Copy sponsor link</button>'
+      +'<button id="eb-save" class="eb-b">Save</button>'
+      +'<button id="eb-dl" class="eb-b">Download</button>'
+      +'<button id="eb-reset" class="eb-b eb-ghost">Reset</button>'
+      +'<span id="eb-msg" class="eb-msg"></span>';
+    document.body.appendChild(bar);
+    var pin=document.getElementById('eb-partner');
+    pin.value=saved.partner||'';
+    pin.addEventListener('input',function(){setPartner(pin.value);});
+    document.getElementById('eb-link').addEventListener('click',function(){
+      var u=location.origin+location.pathname+(pin.value.trim()?('?partner='+encodeURIComponent(pin.value.trim())):'');
+      copy(u);flash(pin.value.trim()?'Sponsor link copied':'Type a sponsor name first');
+    });
+    document.getElementById('eb-save').addEventListener('click',function(){doSave();flash('Saved on this device');});
+    document.getElementById('eb-dl').addEventListener('click',downloadHtml);
+    document.getElementById('eb-reset').addEventListener('click',function(){if(confirm('Clear ALL your saved edits on this device?')){try{localStorage.removeItem(SAVE_KEY);}catch(e){}location.href=location.pathname+'?edit';}});
+  }
 })();
 </script>
 </body>
