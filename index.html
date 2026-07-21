@@ -105,8 +105,10 @@ body::after{
     linear-gradient(0deg,rgba(6,9,16,.3) 0%,rgba(6,9,16,0) 32%);
 }
 .slide[style*="--photo"] .inner{text-shadow:0 2px 24px rgba(0,0,0,.62),0 1px 4px rgba(0,0,0,.55)}
-/* show the WHOLE photo, no crop — for group shots */
-.slide.fit-contain .photo{top:0;left:0;width:100%;height:100%;background-size:contain;background-repeat:no-repeat;background-color:#0b0f1c}
+/* group shot: photo in the LEFT column, story text in the RIGHT column — never over faces */
+.slide.fit-contain{align-items:center}
+.slide.fit-contain .photo{top:0;left:0;width:55%;height:100%;background-size:contain;background-position:center;background-repeat:no-repeat;background-color:transparent}
+.slide.fit-contain .inner{margin-left:auto;margin-right:0;max-width:40%}
 .slide[style*="--photo"]{color:var(--ivory)}
 .slide[style*="--photo"] .body,.slide[style*="--photo"] .stat .l,.slide[style*="--photo"] .stop .sub{color:rgba(244,239,230,.8)}
 .slide[style*="--photo"] .pillar p,.slide[style*="--photo"] .benefit p{color:rgba(244,239,230,.74)}
@@ -230,6 +232,10 @@ h3.display{
   .grid.g3,.grid.g2{grid-template-columns:1fr;gap:24px}
   .tiers{grid-template-columns:1fr}
   .dotnav{display:none}
+  /* group shot stacks: photo on top, text flows right below it (no bottom gap / counter collision) */
+  .slide.fit-contain{align-items:flex-start}
+  .slide.fit-contain .photo{top:2%;width:100%;height:39%;background-position:center top}
+  .slide.fit-contain .inner{margin:0;max-width:100%;padding-top:33svh}
   .stats{gap:26px 40px}
   .route-line{display:none}
   .stops{flex-direction:column;gap:26px;align-items:flex-start}
@@ -649,10 +655,12 @@ h3.display{
   // ---- cover refs ----
   var cov=slides[0], covPhoto=cov.querySelector('.photo');
 
+  // once lines are at rest, drop the mask clip so the text-shadow/descenders aren't sliced (no seam under headlines)
+  function unclip(lines){ if(lines)lines.forEach(function(l){ if(l&&l.parentNode)l.parentNode.style.overflow='visible'; }); }
   function headReveal(h,trig,start){
     var lines=null;
     if(hasSplit){try{lines=SplitText.create(h,{type:'lines',mask:'lines'}).lines;}catch(e){}}
-    if(lines&&lines.length)gsap.from(lines,{yPercent:115,duration:1.1,stagger:.12,ease:EASE,scrollTrigger:{trigger:trig,start:start}});
+    if(lines&&lines.length)gsap.from(lines,{yPercent:115,duration:1.1,stagger:.12,ease:EASE,onComplete:function(){unclip(lines);},scrollTrigger:{trigger:trig,start:start}});
     else gsap.from(h,{y:34,autoAlpha:0,duration:1,ease:EASE,scrollTrigger:{trigger:trig,start:start}});
   }
 
@@ -668,11 +676,11 @@ h3.display{
     var cOthers=cov.querySelectorAll('.reveal:not(.display)');
     var intro=gsap.timeline({delay:.1});
     if(covPhoto)intro.from(covPhoto,{scale:1.14,duration:1.8,ease:'power3.out'},0);
-    if(cLines&&cLines.length)intro.from(cLines,{yPercent:115,duration:1.2,stagger:.12,ease:EASE},0.55);
+    if(cLines&&cLines.length)intro.from(cLines,{yPercent:115,duration:1.2,stagger:.12,ease:EASE,onComplete:function(){unclip(cLines);}},0.55);
     else if(cHead)intro.from(cHead,{yPercent:40,autoAlpha:0,duration:1.1,ease:EASE},0.55);
     if(cOthers.length)intro.from(cOthers,{y:26,autoAlpha:0,duration:1,stagger:.1,ease:'power3.out'},0.9);
-    // safety: guarantee the cover is visible even if rAF is throttled (background tab / edge cases)
-    setTimeout(function(){if(intro.progress()<1)intro.progress(1);},2600);
+    // safety: guarantee the cover is visible even if rAF is throttled (background tab / edge cases). progress(1) suppresses onComplete, so unclip here too.
+    setTimeout(function(){if(intro.progress()<1)intro.progress(1);unclip(cLines);},2600);
 
     // per-slide (skip cover)
     slides.forEach(function(s,i){
